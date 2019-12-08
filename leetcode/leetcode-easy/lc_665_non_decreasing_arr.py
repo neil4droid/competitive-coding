@@ -11,3 +11,4 @@ class Solution:
                 return False
         if len(mySet) <= 1:
             return True
+            
