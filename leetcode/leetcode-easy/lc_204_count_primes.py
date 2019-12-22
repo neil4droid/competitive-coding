@@ -25,16 +25,17 @@ class Solution:
         return True
     
     def countPrimesUsingSieve(self, n:int) -> int:
-        if n <= 2:
-            return 0
-        primes_list = list()
-        for _ in range(0, n):
-            primes_list.append(1)
+        if n <= 2: return 0
+        primes_list = [1] * n
         primes_list[0] = primes_list[1] = 0
-        for i in range(2, math.ceil(n/2)):
-            if not self.is_prime(i):
+        fn_is_prime = self.is_prime
+        fn_run_sieve = self.__run_sieve_over_list
+        # for i in range(2, math.ceil(n/2)):  # This was the original logic I thought of
+        for i in range(2, math.ceil(math.sqrt(n))):
+            if not fn_is_prime(i):
                 primes_list[i] = 0
-            primes_list = self.__run_sieve_over_list(i, n, primes_list)
+            if primes_list[i] == 1:
+                primes_list = fn_run_sieve(i, n, primes_list)
         return primes_list.count(1)
     
     def __run_sieve_over_list(self, number:int, n:int, input_list:List[int]) -> List[int]:
@@ -46,10 +47,10 @@ class Solution:
 
 sol = Solution()
 for _ in range(0, 10):
-    random_int = random.randint(0, 200000000)
-    # print("Naive:", random_int, ": ")
-    # start = time.process_time()
-    # print(sol.countPrimes(random_int), '   ', time.process_time() - start,'s')
+    random_int = random.randint(0, 1000000)
+    print("Naive:", random_int, ": ")
+    start = time.process_time()
+    print(sol.countPrimes(random_int), '   ', time.process_time() - start,'s')
     print("Sieve:", random_int, ": ")
     start = time.process_time()
     print(sol.countPrimesUsingSieve(random_int), '  ',  time.process_time() - start,'s\n')
