@@ -34,6 +34,7 @@ class Solution:
         # i = 2
         # while i*i < n:      # 0.210546875s average time for n upto 1500000
             if primes_list[i] == 1:
+                if i>2 and i%2==0:  continue        # If no is even, do not process further. 0.201953125s average time for n upto 1500000
                 primes_list = fn_run_sieve(i, n, primes_list)
             # i += 1
         return primes_list.count(1)
