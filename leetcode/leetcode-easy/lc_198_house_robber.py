@@ -2,7 +2,7 @@ import random
 from typing import List
 
 class Solution:
-    def rob(self, nums: List[int]) -> int:
+    def rob_1(self, nums: List[int]) -> int:
         if len(nums) == 0:  return 0
         max_loot = 0
         potential_targets = list()
@@ -26,18 +26,28 @@ class Solution:
             nums[-2] = -1
         elif len(nums) > 1:   nums[i-1] = nums[i+1] = -1 
         return nums
+    
+    def rob(self, nums: List[int]) -> int:
+        if len(nums) == 0: return 0
+        if len(nums) == 1: return nums[0]
+        dp = list()
+        dp.append(nums[0])
+        dp.append(max(nums[0], nums[1]))
+        for i in range(2, len(nums)):
+            dp.append(max(dp[i-1], dp[i-2]+nums[i]))
+        return dp[-1]
 
 sol = Solution()
-input = [200,234,182,111,87,194,221,217,71,162,140,51,81,80,232,193,223,103,139,103]
+input = [1, 3, 6, 1, 1]
 print(sol.rob(input))
-input = [2,7,9,3,1]
+input = [1,2,3,1]
 print(sol.rob(input))
 
-# for _ in range(0, 10):
-#     input_len = random.randint(1, 10)
-#     input = list()
-#     for i in range(0, input_len):
-#         input.append(random.randint(0, random.randint(0, 10)))
+for _ in range(0, 10):
+    input_len = random.randint(1, 6)
+    input = list()
+    for i in range(0, input_len):
+        input.append(random.randint(0, random.randint(0, 10)))
     
-#     print(input)
-#     print(sol.rob(input))
+    print(input)
+    print(sol.rob(input))
