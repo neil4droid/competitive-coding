@@ -1,6 +1,8 @@
 from typing import List
 from typing import Set
 
+# TODO: Complete the solution!
+
 class Solution:
     def divisorGame(self, N: int) -> bool:
         dp = dict()
@@ -25,12 +27,25 @@ class Solution:
         dp[N] = steps_to_one_set
         return steps_to_one_set
 
+    def divisorGame2(self, N: int) -> bool:
+        if N <= 1:  return False
+        for i in range(1, N):
+            if N % i == 0 and not self.divisorGame2(N-i):
+                return True
+        return False
+
+    def divisorGame_dp(self, N: int) -> bool:
+        dp = [False]*(N+1)
+        for i in range(2, N+1):
+            for j in range(1, i):
+                if i % j == 0 and not dp[i-j]:
+                    dp[i] = True
+                    break
+        return dp[N]
+
+    def divisorGame_math(self, N: int) -> bool:
+        return N % 2 == 0
+
 sol = Solution()
-print(sol.divisorGame(2))
-print(sol.divisorGame(3))
-print(sol.divisorGame(4))
-print(sol.divisorGame(5))
-print(sol.divisorGame(6))
-print(sol.divisorGame(7))
-print(sol.divisorGame(8))
-print(sol.divisorGame(9))
+for i in range(1, 20):
+    print(i,":",sol.divisorGame_dp(i))
