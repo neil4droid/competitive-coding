@@ -36,7 +36,7 @@ class Solution:
         for i in range(2, len(nums)):
             dp.append(max(dp[i-1], dp[i-2]+nums[i]))
         return dp[-1]
-
+        
 sol = Solution()
 input = [1, 3, 6, 1, 1]
 print(sol.rob(input))
