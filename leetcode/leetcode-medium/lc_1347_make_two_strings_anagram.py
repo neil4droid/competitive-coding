@@ -42,17 +42,19 @@ class Solution(unittest.TestCase):
         for i in range(0, len(t)):
             if s_dict.get(t[i]): s_dict[t[i]] -= 1
         
-        count = 0
-        for k, v in s_dict.items():
-            count += v
-        
-        return count
+        return sum(s_dict.values())
 
     def test_minSteps_using_dict(self):
         self.assertEquals(self.minSteps_using_dict("bab", "bbb"), 1)
-        self.assertEquals(self.minSteps("leetcode", "practice"), 5)
-        self.assertEquals(self.minSteps("anagram", "mangaar"), 0)
-        self.assertEquals(self.minSteps("friend", "family"), 4)
+        self.assertEquals(self.minSteps_using_dict("leetcode", "practice"), 5)
+        self.assertEquals(self.minSteps_using_dict("anagram", "mangaar"), 0)
+        self.assertEquals(self.minSteps_using_dict("friend", "family"), 4)
+    
+    def test_minSteps_naive(self):
+        self.assertEquals(self.minSteps_naive("bab", "bbb"), 1)
+        self.assertEquals(self.minSteps_naive("leetcode", "practice"), 5)
+        self.assertEquals(self.minSteps_naive("anagram", "mangaar"), 0)
+        self.assertEquals(self.minSteps_naive("friend", "family"), 4)
 
 if __name__ == "__main__":
     unittest.main()
