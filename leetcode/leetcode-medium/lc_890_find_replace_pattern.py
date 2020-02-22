@@ -62,7 +62,7 @@ class Solution(unittest.TestCase):
         words = ["abc","deq","mee","aqq","dkd","ccc"]
         pattern = "abb"
         output = ["mee","aqq"]
-        self.assertEqual(list(self.findAndReplacePattern(words, pattern)), output)
+        self.assertListEqual(list(self.findAndReplacePattern(words, pattern)), output)
 
 if __name__ == "__main__":
     unittest.main()
