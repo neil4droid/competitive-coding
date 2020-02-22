@@ -2,10 +2,6 @@ import unittest
 from collections import Counter
 
 class Solution(unittest.TestCase):
-    def minSteps(self, s: str, t: str) -> int:
-        # return self.minSteps_using_dict(s, t)
-        return self.minSteps_naive(s, t)
-
     def minSteps_using_counter(self, s: str, t: str) -> int:
         """
         collection.Counter = dict subclass having the index->index-count mappings.
