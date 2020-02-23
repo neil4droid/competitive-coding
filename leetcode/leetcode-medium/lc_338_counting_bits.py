@@ -1,12 +1,31 @@
 import itertools
 from typing import List
 import unittest
+import math
 
 class Solution(unittest.TestCase):
     def countBits(self, num: int) -> List[int]:
-        return self.count_bits(num)
+        # return self.count_bits_my_method(num)
+        return self.count_bits_half_property(num)
     
-    def count_bits(self, num: int) -> List[int]:
+    def count_bits_half_property(self, num: int) -> List[int]:
+        """
+        In decimal, when you multiply by 10 a zero is added.
+        Similarly if you multiply a binary number by 2, a zero is added and odd number ends with 1.
+        So when a even number 'n' is encountered, it will have same number of 1's as n/2
+        And an odd number will have bits in n/2 +1
+
+        Runtime: 84 ms, faster than 71.05% of Python3 online submissions for Counting Bits.
+        
+        Memory Usage: 19.6 MB, less than 5.00% of Python3 online submissions for Counting Bits.
+        """
+        arr = [0]*(num+1)
+        for i in range(1, num+1):
+            arr[i] = arr[i//2] if i%2 == 0 else arr[i//2]+1
+        
+        return arr
+
+    def count_bits_my_method(self, num: int) -> List[int]:
         """
         Runtime: 1312 ms, faster than 5.00% of Python3 online submissions for Counting Bits.
         
