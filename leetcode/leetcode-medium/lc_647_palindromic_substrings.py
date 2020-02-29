@@ -9,6 +9,17 @@ class Solution(unittest.TestCase):
         return self.count_palindromic_substrings_dp(s)
     
     def count_palindromic_substrings_dp(self, s: str) -> int:
+        """
+        A DP table of each character vs length-1 from 1 to len(str).
+        dp[i][j] = 1 if substring of s from i pos of length j+1 is a palindrome.
+        Base case: String of length 1 is a palindrome i.e. dp[i][0] = 1
+        If substring has 2 chars, then palindrome if chars equal i.e. j = 1
+        Else for len > 2, if first and last chars are equal and remaining substring of length len(substr)-2 is a palindrome, then dp[i][j] = 1
+
+        Runtime: 452 ms, faster than 23.22% of Python3 online submissions for Palindromic Substrings.
+        
+        Memory Usage: 20.5 MB, less than 50.00% of Python3 online submissions for Palindromic Substrings.
+        """
         if not s: return 0
 
         dp, count = [[0] * len(s) for _ in range(0, len(s))], 0
