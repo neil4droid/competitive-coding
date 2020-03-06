@@ -9,6 +9,9 @@ class Solution(unittest.TestCase):
         pass
 
     def diagonal_sort_naive(self, mat: List[List[int]]) -> List[List[int]]:
+        """
+        Function to move the diagonal pointer from bottom left to top right and call sort on every diagonal.
+        """
         if not mat: return None
 
         row_col_index = [len(mat)-1, 0]
@@ -20,6 +23,9 @@ class Solution(unittest.TestCase):
         return mat
 
     def sort_current_diagonal(self, mat: List[List[int]], row_col_index: List[int]) -> List[List[int]]:
+        """
+        Function to sort a diagonal using another array.
+        """
         i, j = row_col_index[0], row_col_index[1]
         temp_arr = []
         while i < len(mat) and j < len(mat[0]):
