@@ -15,6 +15,12 @@ class Solution(unittest.TestCase):
         Solution from: https://www.youtube.com/watch?v=2AdzmA1IC1k
         For every trust record, decrement count for trusting, increment count for trusted.
         If there is a person with count = N-1, that's the judge.
+
+        Runtime: 808 ms, faster than 49.64% of Python3 online submissions for Find the Town Judge.
+        
+        Memory Usage: 17.3 MB, less than 10.00% of Python3 online submissions for Find the Town Judge.
+        
+        The memory usage calculation is broken for this problem.
         """
         if not N: return -1
 
